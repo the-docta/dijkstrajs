@@ -5,8 +5,9 @@
  *
  * Dijkstra path-finding functions. Adapted from the Dijkstar Python project.
  *
- * Copyright (C) 2008
- *   Wyatt Baldwin <self@wyattbaldwin.com>
+ * Copyright (C) 2024
+ *   Sergei Haller
+ *   Forked from: Wyatt Baldwin <self@wyattbaldwin.com>
  *   All rights reserved
  *
  * Licensed under the MIT license.
@@ -79,7 +80,11 @@ var dijkstra = {
           if (first_visit || cost_of_s_to_v > cost_of_s_to_u_plus_cost_of_e) {
             costs[v] = cost_of_s_to_u_plus_cost_of_e;
             open.push(v, cost_of_s_to_u_plus_cost_of_e);
-            predecessors[v] = u;
+            predecessors[v] = [u]
+          } 
+          // if same cost, and u is not yet on predecessor list, add it
+          else if (cost_of_s_to_v === cost_of_s_to_u_plus_cost_of_e && !predecessors[v].includes(u)) {
+            predecessors[v].push(u);
           }
         }
       }
@@ -96,11 +101,9 @@ var dijkstra = {
   extract_shortest_path_from_predecessor_list: function(predecessors, d) {
     var nodes = [];
     var u = d;
-    var predecessor;
     while (u) {
       nodes.push(u);
-      predecessor = predecessors[u];
-      u = predecessors[u];
+      u = predecessors[u]?.[0];
     }
     nodes.reverse();
     return nodes;
