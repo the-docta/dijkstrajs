@@ -31,6 +31,7 @@
   "jshintConfig": {
     "bitwise": true,
     "curly": true,
+    "esversion": 11,
     "eqeqeq": true,
     "forin": true,
     "freeze": true,

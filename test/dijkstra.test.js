@@ -85,11 +85,11 @@ describe('dijkstra.js', function () {
             // All paths from 'a'
             var paths = dijkstra.single_source_shortest_paths(graph, 'a');
             expect(paths).to.eql({
-                d: 'a',
-                b: 'd',
-                e: 'd',
-                f: 'e',
-                c: 'f'
+                d: ['a'],
+                b: ['d'],
+                e: ['d'],
+                f: ['e'],
+                c: ['f']
             });
         });
     });

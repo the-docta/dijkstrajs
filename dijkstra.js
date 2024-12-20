@@ -80,7 +80,7 @@ var dijkstra = {
           if (first_visit || cost_of_s_to_v > cost_of_s_to_u_plus_cost_of_e) {
             costs[v] = cost_of_s_to_u_plus_cost_of_e;
             open.push(v, cost_of_s_to_u_plus_cost_of_e);
-            predecessors[v] = [u]
+            predecessors[v] = [u];
           } 
           // if same cost, and u is not yet on predecessor list, add it
           else if (cost_of_s_to_v === cost_of_s_to_u_plus_cost_of_e && !predecessors[v].includes(u)) {
